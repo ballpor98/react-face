@@ -3,20 +3,23 @@ import ReactDOM from "react-dom";
 import { createBrowserHistory } from "history";
 import { Router, Route, Switch } from "react-router-dom";
 
-import "bootstrap/dist/css/bootstrap.css";
-import "assets/scss/paper-dashboard.scss";
-import "assets/demo/demo.css";
+import "assets/scss/material-kit-react.scss?v=1.8.0";
 
-import indexRoutes from "routes/index.jsx";
+// pages for this product
+import Components from "views/Components/Components.js";
+import LandingPage from "views/LandingPage/LandingPage.js";
+import ProfilePage from "views/ProfilePage/ProfilePage.js";
+import LoginPage from "views/LoginPage/LoginPage.js";
 
-const hist = createBrowserHistory();
+var hist = createBrowserHistory();
 
 ReactDOM.render(
   <Router history={hist}>
     <Switch>
-      {indexRoutes.map((prop, key) => {
-        return <Route path={prop.path} key={key} component={prop.component} />;
-      })}
+      <Route path="/landing-page" component={LandingPage} />
+      <Route path="/profile-page" component={ProfilePage} />
+      <Route path="/login-page" component={LoginPage} />
+      <Route path="/" component={Components} />
     </Switch>
   </Router>,
   document.getElementById("root")
