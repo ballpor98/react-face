@@ -24,6 +24,13 @@ const useStyles = makeStyles(styles);
 export default function Main(props) {
   const classes = useStyles();
   const { ...rest } = props;
+  const setRef = webcam => {
+    this.webcam = webcam;
+  };
+  const capture = () => {
+    const imageSrc = this.webcam.getScreenshot();
+    console.log(imageSrc);
+  };
   return (
     <div>
       <Header
@@ -50,7 +57,13 @@ export default function Main(props) {
             </GridItem>
             <GridItem xs={12} sm={6} md={6}>
               <div className={classes.brand}>
-              <Webcam videoConstraints={{facingMode: "user"}} />
+              <Webcam 
+                screenshotFormat="image/jpeg"
+                height={350}
+                width={350}
+                ref={setRef}
+              />
+              <button onClick={capture}>Capture photo</button>
               </div>
             </GridItem>
           </GridContainer>
