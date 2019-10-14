@@ -24,13 +24,15 @@ const useStyles = makeStyles(styles);
 export default function Main(props) {
   const classes = useStyles();
   const { ...rest } = props;
-  const setRef = webcam => {
-    this.webcam = webcam;
-  };
-  const capture = () => {
-    const imageSrc = this.webcam.getScreenshot();
-    console.log(imageSrc);
-  };
+  const webcamRef = React.useRef(null);
+
+  const capture = React.useCallback(
+    () => {
+      const imageSrc = webcamRef.current.getScreenshot();
+      console.log(imageSrc);
+    },
+    [webcamRef]
+  );
   return (
     <div>
       <Header
@@ -61,7 +63,7 @@ export default function Main(props) {
                 screenshotFormat="image/jpeg"
                 height={350}
                 width={350}
-                ref={setRef}
+                ref={webcamRef}
               />
               <button onClick={capture}>Capture photo</button>
               </div>
