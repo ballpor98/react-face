@@ -50,7 +50,7 @@ export default function Main(props) {
             </GridItem>
             <GridItem xs={12} sm={6} md={6}>
               <div className={classes.brand}>
-              <Webcam />
+              <Webcam videoConstraints={{facingMode: "user"}} />
               </div>
             </GridItem>
           </GridContainer>
